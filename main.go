@@ -45,7 +45,7 @@ func main() {
 
 	app.Use(api.NotFound)
 
-	serverPort := os.Getenv("SERVER_PORT")
+	serverPort := os.Getenv("PORT")
 	runningPort := *port
 	if serverPort != "" {
 		runningPort = serverPort
