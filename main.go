@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/dodysat/goweb/routes"
-	"github.com/joho/godotenv"
 	"os"
 
 	"flag"
@@ -22,11 +21,6 @@ var (
 )
 
 func main() {
-
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 	database.OpenConnection()
 	migration.Migrate()
 
@@ -45,7 +39,7 @@ func main() {
 
 	app.Use(api.NotFound)
 
-	serverPort := os.Getenv("SERVER_PORT")
+	serverPort := os.Getenv("PORT")
 	runningPort := *port
 	if serverPort != "" {
 		runningPort = serverPort

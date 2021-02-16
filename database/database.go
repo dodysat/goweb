@@ -10,6 +10,7 @@ import (
 var DB *gorm.DB
 
 func OpenConnection() {
+
 	var err error
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
