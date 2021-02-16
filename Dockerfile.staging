@@ -5,8 +5,9 @@ LABEL maintainer="Dody Satria <dody.satria@gmail.com>"
 WORKDIR /app
 
 COPY go.* ./
-COPY . ./
 RUN go mod download
+
+COPY . ./
 
 RUN go build -mod=readonly -v -o server
 
