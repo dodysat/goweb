@@ -2,6 +2,13 @@ FROM golang:1.15-buster as builder
 
 LABEL maintainer="Dody Satria <dody.satria@gmail.com>"
 
+ENV PORT=${PORT}
+ENV DB_HOST=${DB_HOST}
+ENV DB_PORT=${DB_PORT}
+ENV DB_DATABASE=${DB_DATABASE}
+ENV DB_USERNAME=${DB_USERNAME}
+ENV DB_PASSWORD=${DB_PASSWORD}
+
 WORKDIR /app
 
 COPY go.* ./
