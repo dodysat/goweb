@@ -1,14 +1,11 @@
 package main
 
 import (
-	"github.com/dodysat/goweb/routes"
-	"github.com/joho/godotenv"
-	"os"
-
 	"flag"
 	"github.com/dodysat/goweb/api"
 	"github.com/dodysat/goweb/database"
 	"github.com/dodysat/goweb/migration"
+	"github.com/dodysat/goweb/routes"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -17,16 +14,16 @@ import (
 )
 
 var (
-	port = flag.String("port", "3000", "Port to listen on")
+	port = flag.String("port", "8080", "Port to listen on")
 	prod = flag.Bool("prod", false, "Enable prefork in Production")
 )
 
 func main() {
+	//err := godotenv.Load()
+	//if err != nil {
+	//	log.Fatal("Error loading .env file")
+	//}
 
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 	database.OpenConnection()
 	migration.Migrate()
 
@@ -45,10 +42,10 @@ func main() {
 
 	app.Use(api.NotFound)
 
-	serverPort := os.Getenv("PORT")
+	//serverPort := os.Getenv("PORT")
 	runningPort := *port
-	if serverPort != "" {
-		runningPort = serverPort
-	}
+	//if serverPort != "" {
+	//	runningPort = serverPort
+	//}
 	log.Fatal(app.Listen(":" + runningPort))
 }
